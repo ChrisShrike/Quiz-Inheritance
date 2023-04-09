@@ -7,24 +7,23 @@ class Person{
 	public String bornDate;
 	public int focus;
 	
-	public Person(String name, String bornDate) {
+	public Person(String name, String bornDate, int focus) {
 		this.name = name;
 		this.bornDate = bornDate;
 		this.focus = focus;
 	}
 	
-	public void Sleep(int increment) {
-		focus += increment;	
-		System.out.println("focus stats: " + focus + "\n");
+	public void Sleep(int newValue) {
+		focus += focus * newValue;
 	}
 }
 
 class Mahasiswa extends Person{
 	public String studId;
-	public int point;
+	public int point = 0;
 	
-	public Mahasiswa(String name, String bornDate, String studId, int point) {
-		super(name, bornDate);
+	public Mahasiswa(String name, String bornDate, String studId, int focus, int point) {
+		super(name, bornDate, focus);
 		this.studId = studId;
 		this.point = point;
 	}
@@ -43,8 +42,8 @@ class Dosen extends Person{
 	public String codeDosen;
 	public int pointDos = 100;
 	
-	public Dosen(String name, String bornDate, String codeDosen, int pointDos){
-		super(name, bornDate);
+	public Dosen(String name, String bornDate, String codeDosen, int focus, int pointDos){
+		super(name, bornDate, focus);
 		this.codeDosen = codeDosen;
 		this.pointDos = pointDos;
 	}
@@ -95,53 +94,62 @@ public class Main {
         System.out.print("Enter role (1 or 2): ");
         int choice = getNew.nextInt();
         
-        while(choice != 1 && choice != 2) {
+        switch(choice) {
+        case 1:
+			String test = getNew.nextLine(); //long story short, this is used so that next input can be read by the program
+			//if the above input is working well, just erase it bacause mine is not working
+			System.out.print("Please enter student id: ");
+			String id = getNew.nextLine();
+			System.out.print("Please enter current focus stat: ");
+			int foc = getNew.nextInt();
+			
+			Person newPerson = new Person(name, date, foc);
+			Mahasiswa newMahasiswa = new Mahasiswa(name, date, id, foc, 0);
+			
+			System.out.println("How many times have you help lecturer? (if none, enter 0): ");
+			int help = getNew.nextInt();
+			newMahasiswa.helpingDosen(help);
+			
+			System.out.println("Enter your sleep rating yesterday (0 - 100): ");
+			int sle = getNew.nextInt();
+			newPerson.Sleep(sle);
+			
+			System.out.println("Your data:");
+			System.out.println("Name : " + newMahasiswa.name);
+			System.out.println("Birth Date : " + newMahasiswa.bornDate);
+			System.out.println("Point : " + newMahasiswa.point);
+			System.out.println("Current Focus Stat : " + newPerson.focus);
+			System.out.println("Student ID : " + newMahasiswa.studId);
+			
+			break;
+		
+        case 2:
+        	System.out.print("Please enter lecturer id: ");
+			String id2 = getNew.nextLine();
+			
+			Dosen dosen1 = new Dosen(name, date, id2, 100, 100);
+        	
+			dosen1.selfDev(1);
+			dosen1.p2m(1);
+			dosen1.research(1);
+			dosen1.teach(1);
+			dosen1.otherWorks(1);
+        	
+			System.out.println("Your data:");
+			System.out.println("Name : " + dosen1.name);
+			System.out.println("Birth Date : " + dosen1.bornDate);
+			System.out.println("Point : " + dosen1.pointDos);
+			System.out.println("Current Focus Stat : " + dosen1.focus);
+			System.out.println("Lecturer ID : " + dosen1.codeDosen);
+			
+			
+        default:
         	System.out.println("1) Student");
             System.out.println("2) Lecturer");
         	System.out.print("Please enter valid role (1 or 2): ");
         	choice = getNew.nextInt();
         }
         
-        if(choice == 1) {
-			System.out.println("Please enter student id: ");
-			String id = getNew.nextLine();
-			
-			System.out.println("Please enter current focus stat: ");
-			int foc = getNew.nextInt();
-			
-			Mahasiswa newMahasiswa = new Mahasiswa(name, date, id, foc);
-			
-			System.out.println("How many times have you help lecturer? (if none, enter 0): ");
-			int help = getNew.nextInt();
-			
-			System.out.println("Your data:");
-			System.out.println("Name : " + newMahasiswa.name);
-			System.out.println("Birth Date : " + newMahasiswa.bornDate);
-			System.out.println("Point : " + newMahasiswa.point);
-			System.out.println("Current Focus Stat : " + newMahasiswa.focus);
-			System.out.println("Student ID : " + newMahasiswa.studId);
-			newMahasiswa.helpingDosen(help);
-			
-        }else if(choice == 2){
-        	System.out.println("Please enter lecturer id: ");
-        	String id = getNew.nextLine();
-        	
-        	System.out.println("Please enter current focus stat: ");
-        	int foc = getNew.nextInt();
-			Dosen newDosen = new Dosen(name, date, id, foc);
-			
-			int choice2 = getNew.nextInt();
-		    
-			System.out.println("Your data:");
-			System.out.println("Name : "+newDosen.name);
-			System.out.println("Birth Date : "+newDosen.bornDate);
-			System.out.println("Point : "+newDosen.pointDos);
-			System.out.println("Dosen ID : "+newDosen.codeDosen);
-			newDosen.selfDev(1);
-			newDosen.p2m(1);
-			newDosen.research(1);
-			newDosen.teach(1);
-			newDosen.otherWorks(1);
-        }
+        getNew.close();
 	}
 }
