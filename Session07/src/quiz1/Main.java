@@ -115,11 +115,11 @@ public class Main {
 			newPerson.Sleep(sle);
 			
 			System.out.println("Your data:");
-			System.out.println("Name : " + newMahasiswa.name);
-			System.out.println("Birth Date : " + newMahasiswa.bornDate);
-			System.out.println("Point : " + newMahasiswa.point);
-			System.out.println("Current Focus Stat : " + newPerson.focus);
-			System.out.println("Student ID : " + newMahasiswa.studId);
+			System.out.println("Name: " + newMahasiswa.name);
+			System.out.println("Student ID: " + newMahasiswa.studId);
+			System.out.println("Birth Date: " + newMahasiswa.bornDate);
+			System.out.println("Point: " + newMahasiswa.point);
+			System.out.println("Current Focus Stat: " + newPerson.focus);
 			
 			break;
 		
@@ -136,11 +136,11 @@ public class Main {
 			dosen1.otherWorks(1);
         	
 			System.out.println("Your data:");
-			System.out.println("Name : " + dosen1.name);
-			System.out.println("Birth Date : " + dosen1.bornDate);
-			System.out.println("Point : " + dosen1.pointDos);
-			System.out.println("Current Focus Stat : " + dosen1.focus);
-			System.out.println("Lecturer ID : " + dosen1.codeDosen);
+			System.out.println("Name: " + dosen1.name);
+			System.out.println("Lecturer ID: " + dosen1.codeDosen);
+			System.out.println("Date of Birth: " + dosen1.bornDate);
+			System.out.println("Point: " + dosen1.pointDos);
+			System.out.println("Current Focus Stat: " + dosen1.focus);
 			
 			
         default:
