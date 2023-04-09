@@ -75,81 +75,81 @@ public class Main {
 		String name = getNew.nextLine();
 		
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        dateFormat.setLenient(false);
-        
-        System.out.print("Enter a date (dd/MM/yyyy): ");
-        String date = getNew.nextLine();
-        while(true) {
-        	try {
-        		Date dateVal = dateFormat.parse(date);
-                break;
-            }catch(Exception e) {
-                System.out.print("Please enter a valid date of birth (dd/MM/yyyy): ");
-                date = getNew.nextLine();
-            }
-        }
-		
-        System.out.println("1) Student");
-        System.out.println("2) Lecturer");
-        System.out.print("Enter role (1 or 2): ");
-        int choice = getNew.nextInt();
-        
-        switch(choice) {
-        case 1:
+		dateFormat.setLenient(false);
+
+		System.out.print("Enter a date (dd/MM/yyyy): ");
+		String date = getNew.nextLine();
+		while(true) {
+			try {
+				Date dateVal = dateFormat.parse(date);
+			break;
+		    }catch(Exception e) {
+			System.out.print("Please enter a valid date of birth (dd/MM/yyyy): ");
+			date = getNew.nextLine();
+		    }
+		}
+
+		System.out.println("1) Student");
+		System.out.println("2) Lecturer");
+		System.out.print("Enter role (1 or 2): ");
+		int choice = getNew.nextInt();
+
+		switch(choice) {
+		case 1:
 			String test = getNew.nextLine(); //long story short, this is used so that next input can be read by the program
 			//if the above input is working well, just erase it bacause mine is not working
 			System.out.print("Please enter student id: ");
 			String id = getNew.nextLine();
 			System.out.print("Please enter current focus stat: ");
 			int foc = getNew.nextInt();
-			
+
 			Person newPerson = new Person(name, date, foc);
 			Mahasiswa newMahasiswa = new Mahasiswa(name, date, id, foc, 0);
-			
+
 			System.out.println("How many times have you help lecturer? (if none, enter 0): ");
 			int help = getNew.nextInt();
 			newMahasiswa.helpingDosen(help);
-			
+
 			System.out.println("Enter your sleep rating yesterday (0 - 100): ");
 			int sle = getNew.nextInt();
 			newPerson.Sleep(sle);
-			
+
 			System.out.println("Your data:");
 			System.out.println("Name: " + newMahasiswa.name);
 			System.out.println("Student ID: " + newMahasiswa.studId);
 			System.out.println("Birth Date: " + newMahasiswa.bornDate);
 			System.out.println("Point: " + newMahasiswa.point);
 			System.out.println("Current Focus Stat: " + newPerson.focus);
-			
+
 			break;
-		
-        case 2:
-        	System.out.print("Please enter lecturer id: ");
+
+		case 2:
+			System.out.print("Please enter lecturer id: ");
 			String id2 = getNew.nextLine();
-			
+
 			Dosen dosen1 = new Dosen(name, date, id2, 100, 100);
-        	
+
 			dosen1.selfDev(1);
 			dosen1.p2m(1);
 			dosen1.research(1);
 			dosen1.teach(1);
 			dosen1.otherWorks(1);
-        	
+
 			System.out.println("Your data:");
 			System.out.println("Name: " + dosen1.name);
 			System.out.println("Lecturer ID: " + dosen1.codeDosen);
 			System.out.println("Date of Birth: " + dosen1.bornDate);
 			System.out.println("Point: " + dosen1.pointDos);
 			System.out.println("Current Focus Stat: " + dosen1.focus);
-			
-			
-        default:
-        	System.out.println("1) Student");
-		System.out.println("2) Lecturer");
-        	System.out.print("Please enter valid role (1 or 2): ");
-        	choice = getNew.nextInt();
-        }
-        
-        getNew.close();
+
+
+		default:
+			System.out.println("1) Student");
+			System.out.println("2) Lecturer");
+			System.out.print("Please enter valid role (1 or 2): ");
+			choice = getNew.nextInt();
+		}
+
+		getNew.close();
 	}
 }
