@@ -145,7 +145,7 @@ public class Main {
 			
         default:
         	System.out.println("1) Student");
-            System.out.println("2) Lecturer");
+		System.out.println("2) Lecturer");
         	System.out.print("Please enter valid role (1 or 2): ");
         	choice = getNew.nextInt();
         }
